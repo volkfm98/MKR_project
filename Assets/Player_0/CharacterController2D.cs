@@ -11,6 +11,7 @@ public class CharacterController2D : MonoBehaviour
 	[SerializeField] private Transform m_GroundCheck;							// A position marking where to check if the player is grounded.
 	[SerializeField] private Transform m_CeilingCheck;							// A position marking where to check for ceilings
 	[SerializeField] private Collider2D m_CrouchDisableCollider;				// A collider that will be disabled when crouching
+    [SerializeField] private Collider2D CrouchCollider;
 
 	const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
 	private bool m_Grounded;            // Whether or not the player is grounded.
@@ -33,8 +34,9 @@ public class CharacterController2D : MonoBehaviour
 	private void Awake()
 	{
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
+        //CrouchCollider = (Collider2D)this.transform.GetChild(0).gameObject;
 
-		if (OnLandEvent == null)
+        if (OnLandEvent == null)
 			OnLandEvent = new UnityEvent();
 
 		if (OnCrouchEvent == null)
@@ -86,16 +88,24 @@ public class CharacterController2D : MonoBehaviour
 				move *= m_CrouchSpeed;
 
                 // Disable one of the colliders when crouching
-                if (m_CrouchDisableCollider != null) { }
+                if (m_CrouchDisableCollider != null) {
+                    m_CrouchDisableCollider.enabled = false;
+                    CrouchCollider.enabled = true;
+                    
                     //m_CrouchDisableCollider.enabled = false;
                     //m_CrouchDisableCollider.size[1] /= 2;
+                }
 
             } else
 			{
                 // Enable the collider when not crouching
-                if (m_CrouchDisableCollider != null) { }
+                if (m_CrouchDisableCollider != null) {
+                    m_CrouchDisableCollider.enabled = true;
+                    CrouchCollider.enabled = false;
+
                     //m_CrouchDisableCollider.enabled = true;
                     //m_CrouchDisableCollider.size[1] *= 2;
+                }
 
                 if (m_wasCrouching)
 				{
