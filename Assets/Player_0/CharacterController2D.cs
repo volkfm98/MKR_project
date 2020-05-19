@@ -88,14 +88,14 @@ public class CharacterController2D : MonoBehaviour
                 // Disable one of the colliders when crouching
                 if (m_CrouchDisableCollider != null)
                     //m_CrouchDisableCollider.enabled = false;
-                    m_CrouchDisableCollider.size[1] /= 2;
+                    //m_CrouchDisableCollider.size[1] /= 2;
 
             } else
 			{
                 // Enable the collider when not crouching
                 if (m_CrouchDisableCollider != null)
                     //m_CrouchDisableCollider.enabled = true;
-                    m_CrouchDisableCollider.size[1] *= 2;
+                    //m_CrouchDisableCollider.size[1] *= 2;
 
                 if (m_wasCrouching)
 				{
