@@ -40,6 +40,8 @@ public class MC : MonoBehaviour {
             Debug.Log("JUMP");
             jump = true;
             animator.SetBool("IsJumping", true);
+        } else if (Input.GetButtonUp("Jump")) {
+            jump = false;
         }
         if (Input.GetButtonDown("Crouch")) {
 

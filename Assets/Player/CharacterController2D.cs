@@ -125,27 +125,31 @@ public class CharacterController2D : MonoBehaviour
         }
 
         //only control the player if grounded or airControl is turned on
-        if (m_Grounded || m_AirControl)
-		{
-			// Move the character by finding the target velocity
-			Vector3 targetVelocity = new Vector2(move * 10f, m_Rigidbody2D.velocity.y);
-			// And then smoothing it out and applying it to the character
-			m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
+        Vector3 targetVelocity;
 
-            // If the input is moving the player right and the player is facing left...
-            
-			if (mouse.x - gameObject.transform.position.x > 0.0 && !m_FacingRight)
-			{
-				// ... flip the player.
-				Flip();
-			}
-			// Otherwise if the input is moving the player left and the player is facing right...
-			else if (mouse.x - gameObject.transform.position.x < 0.0 && m_FacingRight)
-			{
-				// ... flip the player.
-				Flip();
-			}
+        if (m_Grounded) {
+            // Move the character by finding the target velocity
+            targetVelocity = new Vector2(move * 10f, m_Rigidbody2D.velocity.y);
+        } else {
+            targetVelocity = new Vector2(m_Rigidbody2D.velocity.x + move * 0.3f, m_Rigidbody2D.velocity.y);
+        }
+
+        // And then smoothing it out and applying it to the character
+        m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
+
+        // If the input is moving the player right and the player is facing left... 
+        if (mouse.x - gameObject.transform.position.x > 0.0 && !m_FacingRight)
+		{
+			// ... flip the player.
+			Flip();
 		}
+		// Otherwise if the input is moving the player left and the player is facing right...
+		else if (mouse.x - gameObject.transform.position.x < 0.0 && m_FacingRight)
+		{
+			// ... flip the player.
+			Flip();
+		}
+
 		// If the player should jump...
 		if (m_Grounded && jump)
 		{
@@ -153,6 +157,8 @@ public class CharacterController2D : MonoBehaviour
 			m_Grounded = false;
 			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
 		}
+
+        //if (jump)
 	}
 
 
