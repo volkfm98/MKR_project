@@ -5,6 +5,9 @@ using UnityEngine;
 public class MC : MonoBehaviour {
     public CharacterController2D controller;
 
+    //TO BE DELETED:
+    [SerializeField] private Transform StaticTeleport;
+
     float horizontalMove = 0f;
     public float runSpeed = 40f;
     bool jump = false;
@@ -22,6 +25,12 @@ public class MC : MonoBehaviour {
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
 
         animator.SetFloat("Sp", Mathf.Abs(horizontalMove));
+
+        //TO BE DELETED
+        if (Input.GetButtonDown("Fire1")) {
+            controller.Teleport(StaticTeleport);
+            Debug.Log("Teleport!");
+        }
 
         if (Input.GetButtonDown("Jump")) {
             Debug.Log("JUMP");
