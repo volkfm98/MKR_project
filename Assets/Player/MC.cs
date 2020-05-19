@@ -13,6 +13,8 @@ public class MC : MonoBehaviour {
     bool jump = false;
     bool crouch = false;
 
+    Vector3 mousePos;
+
     public Animator animator;
     void Start() {
 
@@ -22,14 +24,16 @@ public class MC : MonoBehaviour {
     void Update() {
         //Debug.Log(Input.GetAxisRaw("Horizontal"));
 
+        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePos.z = 0;
+
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
 
         animator.SetFloat("Sp", Mathf.Abs(horizontalMove));
 
-        //TO BE DELETED
         if (Input.GetButtonDown("Fire1")) {
             controller.Fire();
-            Debug.Log("Teleport!");
+            Debug.Log("FIRE AT WILL!");
         }
 
         if (Input.GetButtonDown("Jump")) {
@@ -57,7 +61,7 @@ public class MC : MonoBehaviour {
 
     void FixedUpdate()
     {
-        controller.Move(horizontalMove*Time.fixedDeltaTime,crouch,jump);
+        controller.Move(horizontalMove*Time.fixedDeltaTime,crouch,jump, mousePos);
         jump = false;
     }
 }

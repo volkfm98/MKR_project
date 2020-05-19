@@ -16,10 +16,14 @@ public class SpideyGun : Gun
     public void Fire() {
         GameObject projectile = Object.Instantiate(m_Projectile, this.transform);
 
-        projectile.transform.position += new Vector3(0.3f, 0.0f, 0);
+        Vector3 fireTrajectory = (this.transform.position - this.transform.parent.position).normalized;
+
+        projectile.transform.parent = null;
+
+        projectile.transform.position += fireTrajectory;
+        projectile.transform.rotation = new Quaternion(0, 0, 0, 0);
 
         projectile.SetActive(true);
-        projectile.GetComponent<Rigidbody2D>().AddRelativeForce(new Vector2(m_Force, 0), ForceMode2D.Impulse);
-        projectile.transform.parent = null;
+        projectile.GetComponent<Rigidbody2D>().AddRelativeForce(fireTrajectory * m_Force, ForceMode2D.Impulse);
     }
 }

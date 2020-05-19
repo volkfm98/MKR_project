@@ -55,7 +55,7 @@ public class CharacterController2D : MonoBehaviour
 
 	private void FixedUpdate()
 	{
-		bool wasGrounded = m_Grounded;
+        bool wasGrounded = m_Grounded;
 		m_Grounded = false;
 
 		// The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
@@ -73,11 +73,19 @@ public class CharacterController2D : MonoBehaviour
 	}
 
 
-	public void Move(float move, bool crouch, bool jump)
+	public void Move(float move, bool crouch, bool jump, Vector3 mouse)
 	{
-		// If crouching, check to see if the character can stand up
-		// If the character has a ceiling preventing them from standing up, keep them crouching
-		if (Physics2D.OverlapCircle(m_CeilingCheck.position, k_CeilingRadius, m_WhatIsGround)) {
+        float gunAngle = Vector3.SignedAngle(
+            gun.transform.position - gameObject.transform.position,
+            mouse - gameObject.transform.position,
+            Vector3.forward
+        );
+
+        gun.transform.RotateAround(gameObject.transform.position, Vector3.forward, gunAngle);
+
+        // If crouching, check to see if the character can stand up
+        // If the character has a ceiling preventing them from standing up, keep them crouching
+        if (Physics2D.OverlapCircle(m_CeilingCheck.position, k_CeilingRadius, m_WhatIsGround)) {
 				crouch = true;
 		}
 
@@ -124,14 +132,15 @@ public class CharacterController2D : MonoBehaviour
 			// And then smoothing it out and applying it to the character
 			m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
 
-			// If the input is moving the player right and the player is facing left...
-			if (move > 0 && !m_FacingRight)
+            // If the input is moving the player right and the player is facing left...
+            
+			if (mouse.x - gameObject.transform.position.x > 0.0 && !m_FacingRight)
 			{
 				// ... flip the player.
 				Flip();
 			}
 			// Otherwise if the input is moving the player left and the player is facing right...
-			else if (move < 0 && m_FacingRight)
+			else if (mouse.x - gameObject.transform.position.x < 0.0 && m_FacingRight)
 			{
 				// ... flip the player.
 				Flip();
