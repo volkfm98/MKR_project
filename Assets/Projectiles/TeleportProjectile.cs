@@ -12,11 +12,14 @@ public class TeleportProjectile : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter2D(Collision2D other) {
-        m_Player.GetComponent<CharacterController2D>().Teleport(this.transform);
-        Debug.Log(gameObject.name);
-        Debug.Log("Saas");
-        Destroy(gameObject);
+    private void OnTriggerEnter2D(Collider2D col) {
+        if (col.gameObject.tag != "Player") {
+            this.transform.position -= (Vector3)this.GetComponent<Rigidbody2D>().velocity.normalized * 0.2f;
+
+            m_Player.GetComponent<CharacterController2D>().Teleport(this.transform);
+ 
+            Destroy(gameObject);
+        }
     }
 
     // Update is called once per frame

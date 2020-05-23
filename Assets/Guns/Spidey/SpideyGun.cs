@@ -20,7 +20,7 @@ public class SpideyGun : Gun
 
         projectile.transform.parent = null;
 
-        projectile.transform.position += fireTrajectory * 0.5f;
+        projectile.transform.position += fireTrajectory * -0.1f;
         projectile.transform.rotation = new Quaternion(0, 0, 0, 0);
 
         projectile.SetActive(true);

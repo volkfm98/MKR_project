@@ -75,13 +75,15 @@ public class CharacterController2D : MonoBehaviour
 
 	public void Move(float move, bool crouch, bool jump, Vector3 mouse)
 	{
-        float gunAngle = Vector3.SignedAngle(
-            gun.transform.position - gameObject.transform.position,
-            mouse - gameObject.transform.position,
-            Vector3.forward
-        );
+        if (gun != null) {
+            float gunAngle = Vector3.SignedAngle(
+                gun.transform.position - gameObject.transform.position,
+                mouse - gameObject.transform.position,
+                Vector3.forward
+            );
 
-        gun.transform.RotateAround(gameObject.transform.position, Vector3.forward, gunAngle);
+            gun.transform.RotateAround(gameObject.transform.position, Vector3.forward, gunAngle);
+        }
 
         // If crouching, check to see if the character can stand up
         // If the character has a ceiling preventing them from standing up, keep them crouching
