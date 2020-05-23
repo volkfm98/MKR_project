@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Projectile: {fileID: 539980295}
-  m_Force: 70
+  m_Force: 120
 --- !u!70 &425008393
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
