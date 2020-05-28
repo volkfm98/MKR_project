@@ -24,6 +24,9 @@ public class MC : MonoBehaviour {
     void Update() {
         //Debug.Log(Input.GetAxisRaw("Horizontal"));
 
+        GameObject pauseMenuController = GameObject.Find("PauseMenuController");
+        PauseMenu pauseMenu = pauseMenuController.GetComponent<PauseMenu>();
+
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = 0;
 
@@ -31,7 +34,7 @@ public class MC : MonoBehaviour {
 
         animator.SetFloat("Sp", Mathf.Abs(horizontalMove));
 
-        if (Input.GetButtonDown("Fire1")) {
+        if (Input.GetButtonDown("Fire1") && !pauseMenu.isPaused) {
             controller.Fire();
             Debug.Log("FIRE AT WILL!");
         }
