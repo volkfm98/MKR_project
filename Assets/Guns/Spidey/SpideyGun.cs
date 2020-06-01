@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpideyGun : Gun
 {
-    [SerializeField] private GameObject m_Projectile;
+    [SerializeField] public GameObject m_Projectile;
     [SerializeField] private float m_Force;
 
     private Rigidbody2D m_Rigidbody2D;
