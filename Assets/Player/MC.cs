@@ -34,22 +34,26 @@ public class MC : MonoBehaviour {
 
         animator.SetFloat("Sp", Mathf.Abs(horizontalMove));
 
+        //Fire on mouse left click
         if (Input.GetButtonDown("Fire1") && !pauseMenu.isPaused) {
             controller.Fire();
             Debug.Log("FIRE AT WILL!");
         }
 
-        if (Input.GetButtonDown("Jump")) {
+        //Jump on space click
+        if (Input.GetButtonDown("Jump") && !pauseMenu.isPaused) {
             Debug.Log("JUMP");
             jump = true;
             animator.SetBool("IsJumping", true);
-        } else if (Input.GetButtonUp("Jump")) {
+        } else if (Input.GetButtonUp("Jump") && !pauseMenu.isPaused) {
             jump = false;
         }
-        if (Input.GetButtonDown("Crouch")) {
+
+    	//Crouch on "S" click
+        if (Input.GetButtonDown("Crouch") && !pauseMenu.isPaused) {
 
             crouch = true;
-        } else if (Input.GetButtonUp("Crouch")) {
+        } else if (Input.GetButtonUp("Crouch") && !pauseMenu.isPaused) {
 
             crouch = false;
         }
