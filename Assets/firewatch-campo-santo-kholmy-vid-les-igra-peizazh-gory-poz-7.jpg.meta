@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 9ed53c01428aaa14fac37744aced5bb9
+=======
+guid: c82d12b82379aff49b7c1ac3fee26f43
+>>>>>>> STRUCT_1_LVL
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
