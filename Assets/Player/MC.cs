@@ -27,36 +27,39 @@ public class MC : MonoBehaviour {
         GameObject pauseMenuController = GameObject.Find("PauseMenuController");
         PauseMenu pauseMenu = pauseMenuController.GetComponent<PauseMenu>();
 
-        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mousePos.z = 0;
+        if (!pauseMenu.isPaused)
+        {
+	        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+	        mousePos.z = 0;
 
-        horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+	        horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
 
-        animator.SetFloat("Sp", Mathf.Abs(horizontalMove));
+	        animator.SetFloat("Sp", Mathf.Abs(horizontalMove));
 
-        //Fire on mouse left click
-        if (Input.GetButtonDown("Fire1") && !pauseMenu.isPaused) {
-            controller.Fire();
-            Debug.Log("FIRE AT WILL!");
-        }
+	        //Fire on mouse left click
+	        if (Input.GetButtonDown("Fire1")) {
+	            controller.Fire();
+	            Debug.Log("FIRE AT WILL!");
+	        }
 
-        //Jump on space click
-        if (Input.GetButtonDown("Jump") && !pauseMenu.isPaused) {
-            Debug.Log("JUMP");
-            jump = true;
-            animator.SetBool("IsJumping", true);
-        } else if (Input.GetButtonUp("Jump") && !pauseMenu.isPaused) {
-            jump = false;
-        }
+	        //Jump on space click
+	        if (Input.GetButtonDown("Jump")) {
+	            Debug.Log("JUMP");
+	            jump = true;
+	            animator.SetBool("IsJumping", true);
+	        } else if (Input.GetButtonUp("Jump")) {
+	            jump = false;
+	        }
 
-    	//Crouch on "S" click
-        if (Input.GetButtonDown("Crouch") && !pauseMenu.isPaused) {
+	    	//Crouch on "S" click
+	        if (Input.GetButtonDown("Crouch")) {
 
-            crouch = true;
-        } else if (Input.GetButtonUp("Crouch") && !pauseMenu.isPaused) {
+	            crouch = true;
+	        } else if (Input.GetButtonUp("Crouch")) {
 
-            crouch = false;
-        }
+	            crouch = false;
+	        }
+    	}
     }
 
     public void OnLanding() {
