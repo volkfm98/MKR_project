@@ -8969,6 +8969,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7621358544072026510, guid: 5fcdaa083baf2c9409d8126959a47a55,
+        type: 3}
+      propertyPath: m_GravityScale
+      value: -0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 8989734219366619987, guid: 5fcdaa083baf2c9409d8126959a47a55,
         type: 3}
       propertyPath: m_Player
