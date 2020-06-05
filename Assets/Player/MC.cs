@@ -24,32 +24,42 @@ public class MC : MonoBehaviour {
     void Update() {
         //Debug.Log(Input.GetAxisRaw("Horizontal"));
 
-        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mousePos.z = 0;
+        GameObject pauseMenuController = GameObject.Find("PauseMenuController");
+        PauseMenu pauseMenu = pauseMenuController.GetComponent<PauseMenu>();
 
-        horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+        if (!pauseMenu.isPaused)
+        {
+	        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+	        mousePos.z = 0;
 
-        animator.SetFloat("Sp", Mathf.Abs(horizontalMove));
+	        horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
 
-        if (Input.GetButtonDown("Fire1")) {
-            controller.Fire();
-            Debug.Log("FIRE AT WILL!");
-        }
+	        animator.SetFloat("Sp", Mathf.Abs(horizontalMove));
 
-        if (Input.GetButtonDown("Jump")) {
-            Debug.Log("JUMP");
-            jump = true;
-            animator.SetBool("IsJumping", true);
-        } else if (Input.GetButtonUp("Jump")) {
-            jump = false;
-        }
-        if (Input.GetButtonDown("Crouch")) {
+	        //Fire on mouse left click
+	        if (Input.GetButtonDown("Fire1")) {
+	            controller.Fire();
+	            Debug.Log("FIRE AT WILL!");
+	        }
 
-            crouch = true;
-        } else if (Input.GetButtonUp("Crouch")) {
+	        //Jump on space click
+	        if (Input.GetButtonDown("Jump")) {
+	            Debug.Log("JUMP");
+	            jump = true;
+	            animator.SetBool("IsJumping", true);
+	        } else if (Input.GetButtonUp("Jump")) {
+	            jump = false;
+	        }
 
-            crouch = false;
-        }
+	    	//Crouch on "S" click
+	        if (Input.GetButtonDown("Crouch")) {
+
+	            crouch = true;
+	        } else if (Input.GetButtonUp("Crouch")) {
+
+	            crouch = false;
+	        }
+    	}
     }
 
     public void OnLanding() {
