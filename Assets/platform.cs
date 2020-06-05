@@ -19,7 +19,7 @@ public class platform : MonoBehaviour
         {
             moveingUp = false;
         }
-        else if (transform.position.y < -3f)
+        else if (transform.position.y < -3.5f)
         {
             moveingUp = true;
         }
