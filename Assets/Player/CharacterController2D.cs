@@ -96,6 +96,7 @@ public class CharacterController2D : MonoBehaviour
             if (!m_wasCrouching) {
                 m_wasCrouching = true;
                 OnCrouchEvent.Invoke(true);
+                this.transform.Find("Player_texture_pivot").transform.Rotate(new Vector3(0.0f, 0.0f, -90.0f));
             }
 
             // Reduce the speed by the crouchSpeed multiplier
@@ -121,6 +122,7 @@ public class CharacterController2D : MonoBehaviour
             }
 
             if (m_wasCrouching) {
+            	this.transform.Find("Player_texture_pivot").transform.Rotate(new Vector3(0.0f, 0.0f, 90.0f));
                 m_wasCrouching = false;
                 OnCrouchEvent.Invoke(false);
             }
