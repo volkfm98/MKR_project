@@ -456,7 +456,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6521685730632462899}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cdf746d562637134c9fd7ffccf5ca7e2, type: 3}
   m_Name: 
@@ -477,7 +477,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13ff06ad54e42fc41917f2837b3048cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_JumpForce: 900
+  m_JumpForce: 700
   m_CrouchSpeed: 0.36
   m_MovementSmoothing: 0.05
   m_AirControl: 0
@@ -492,7 +492,7 @@ MonoBehaviour:
   OnLandEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 6329071428689472842}
         m_MethodName: OnLanding
         m_Mode: 1
         m_Arguments:
@@ -603,6 +603,7 @@ GameObject:
   - component: {fileID: 6521685731048441622}
   - component: {fileID: 6521685731048441617}
   - component: {fileID: 6521685731048441616}
+  - component: {fileID: 6329071428689472842}
   m_Layer: 8
   m_Name: Player_textures
   m_TagString: Untagged
@@ -693,3 +694,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &6329071428689472842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6521685731048441623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdf746d562637134c9fd7ffccf5ca7e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 6521685730632462895}
+  StaticTeleport: {fileID: 0}
+  runSpeed: 40
+  animator: {fileID: 6521685731048441616}
