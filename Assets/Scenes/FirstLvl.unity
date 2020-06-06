@@ -409,8 +409,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
-<<<<<<< Gun
-=======
 --- !u!1 &539980295
 GameObject:
   m_ObjectHideFlags: 0
@@ -545,7 +543,6 @@ Transform:
   m_Father: {fileID: 425008396}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
->>>>>>> Collision between projectiles
 --- !u!1 &840910354
 GameObject:
   m_ObjectHideFlags: 0
